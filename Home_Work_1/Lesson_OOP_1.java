@@ -1,52 +1,68 @@
 package Home_Work_1;
 
-import Home_Work_1.Unit.Crossbowman;
-import Home_Work_1.Unit.Monk;
-import Home_Work_1.Unit.Peasant;
-import Home_Work_1.Unit.Robber;
-import Home_Work_1.Unit.Sniper;
-import Home_Work_1.Unit.Sorcerer;
-import Home_Work_1.Unit.Spearman;
+import java.util.ArrayList;
+import java.util.Random;
+
+import Home_Work_1.Interface.Names;
+import Unit.Crossbowman;
+import Unit.Mage;
+import Unit.Monk;
+import Unit.Peasant;
+import Unit.Robber;
+import Unit.Sniper;
+import Unit.Sorcerer;
+import Unit.Spearman;
+import Unit.Unit_Character;
+import Unit.Warrior;
 
 public class Lesson_OOP_1 {
     public static void main(String[] args) {
-        Peasant john = new Peasant("John", 50, 5, 10);
-        Robber rob = new Robber("Rob", 60, 10, 20);
-        Sniper tom = new Sniper("Tom", 40, 20, 5);
-        Sorcerer merlin = new Sorcerer("Merlin", 30, 15, 15);
-        Spearman lance = new Spearman("Lance", 70, 10, 15);
-        Crossbowman bob = new Crossbowman("Bob", 10, 15, 5);
-        Monk jin = new Monk("Jin", 90, 5, 25);
 
+        ArrayList<Unit_Character> characters = new ArrayList<>();
         
-        // jin.heal(bob);
-        // System.out.println(john);
-        // System.out.println("\n"+rob);
-        // System.out.println("\n"+tom);
-        // System.out.println("\n"+merlin);
-        // System.out.println("\n"+lance);
-        System.out.println("\n"+bob);
-        System.out.println("\n"+jin);
-        jin.attack(bob);
-        bob.attack(jin);
-        System.out.println("\n"+jin);
-        bob.attack(jin);
-        System.out.println("\n"+jin);
-        bob.attack(jin);
-        System.out.println("\n"+jin);
-        bob.attack(jin);
-        bob.attack(jin);
-        bob.attack(jin);
-        System.out.println("\n"+jin);
-        jin.heal(jin);
-        // System.out.println("\n"+bob);
-        // System.out.println("\n"+jin);
-        // jin.heal(bob);
-        // System.out.println("\n"+bob);
-        // System.out.println("\n"+jin);
-        // jin.heal(bob);
-        // jin.heal(jin);
-        // System.out.println("\n"+bob);
-        System.out.println("\n"+jin);
+
+        Random rand = new Random();
+        for (int i = 0; i < 50; i++) {
+            int type = rand.nextInt(7);
+            String name = getName();
+ 
+            switch (type) {
+                case 0:
+                    characters.add(new Peasant(name));
+                    break;
+                case 1:
+                    characters.add(new Robber(name));
+                    break;
+                case 2:
+                    characters.add(new Sniper(name));
+                    break;
+                case 3:
+                    characters.add(new Sorcerer(name));
+                    break;
+                case 4:
+                    characters.add(new Spearman(name));
+                    break;
+                case 5:
+                    characters.add(new Crossbowman(name));
+                    break;
+                case 6:
+                    characters.add(new Monk(name));
+                    break;
+                   
+            }
+        }
+
+            for (Unit_Character character : characters) {
+            System.out.println(character.getInfo() + "\n" + character + "\n");
+            
+        }
+    
     }
+    
+        private static String getName(){
+            String name= String.valueOf(Names.values()[new Random().nextInt(Names.values().length-1)]);
+            return name;
+        }
+        
 }
+
