@@ -2,32 +2,17 @@ package Home_Work_1.Unit;
 
 // # Арбалетчик
 public class Crossbowman extends Shooter {
-    public Crossbowman(int health, int damage, int defense, int speed, int shots, int maxShots, float dist) {
-        super(health, damage, defense, speed, shots, maxShots, dist);
+   
+    public Crossbowman(int health, int damage, int defense, int speed, int distance) {
+        super(health, damage, defense, speed, distance);
         super.name = name;
     }
 
     public Crossbowman(String name){
-        super(100, 8,5,  1, 10, 30, 8);
+        super(100, 8,5,  1, 8);
         super.name = name;
     }
-    
-    int shot = 0;
-    int amount =3;  
-    public void attack(Unit_Character target) { //Атака с большой дистанции.
-       if(amount != 0){
-        target.health -= this.damage;
-        this.amount = this.amount - this.shot;
-        }
-       else{
-        this.damage= 0;
-       } 
-    }
-        
-    public void arsenal() {  // Колличество арсенала. "Нужно переделать."
-       
-    }
-
+   
     public void move() {  // Средняя скрость передвижения
         this.speed -= 5;
     }

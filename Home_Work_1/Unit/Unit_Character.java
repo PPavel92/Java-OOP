@@ -22,8 +22,9 @@ public abstract class Unit_Character implements GameInterface, Comparable<Unit_C
             this.speed = speed;
         }
 
-        public void setHp(int health) 
-        {if (health >= 0) this.health = health;}
+        public void setHealth(int health) {
+            if (health >= 0) this.health = health;
+        }
     
         public int getMaxHealth() {
             if (health >= 100)
@@ -35,24 +36,44 @@ public abstract class Unit_Character implements GameInterface, Comparable<Unit_C
             this.maxHealth = maxHealth;
         }
     
-        public void setHealth(int health) {
-            this.health = health;
-        }
-    
         protected void healed(int health) {
             this.health = health + this.health > this.maxHealth ? this.maxHealth : health + this.health;
         }
-    
+
         protected void getDamage(int damage) {
             if (this.health - damage > 0) {
                 this.health -= damage;
             }
-            //  else { die(); } //// доделать смерть
+              else {
+                isDead(); 
+            } 
+        }
+
+        public boolean isDead() {
+            return health <= 0;
+        }
+
+        public void defend(int damage) {
+            int damageDealt = damage - defense;
+            if (damageDealt < 0) {
+                damageDealt = 0;
+            }
+            health -= damageDealt;
+            if (health < 0) {
+                health = 0;
+            }
+            System.out.println(getName() + " получил " + damageDealt + " урона!");
+            if (isDead()) {
+                System.out.println(getName() + " Мертв");
+            }
         }
 
 
-
         
+        protected String getName() { 
+            return null;
+        }
+
     @Override
     public void step() {
 

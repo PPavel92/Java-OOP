@@ -24,7 +24,7 @@ public class Lesson_OOP_1 {
     List<Unit_Character> alliance = new ArrayList<>();
     List<Unit_Character> Soviet = new ArrayList<>();
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 10; i++) {
         int type = random.nextInt(4); 
         String name = getName();
         switch (type) {
@@ -41,7 +41,7 @@ public class Lesson_OOP_1 {
                 alliance.add(new Sorcerer(name));
                 break;
         }
-        System.out.println(alliance);
+
     }
 
     
@@ -63,13 +63,13 @@ public class Lesson_OOP_1 {
                 break;
         }
     }
-System.out.println("________________________");
+
     List<Unit_Character> allCharacters = new ArrayList<>(alliance);
     allCharacters.addAll(Soviet);
     Collections.sort(allCharacters);
 
     for (Unit_Character character : allCharacters) {
-        System.out.println(character);
+        System.out.println(character.getInfo() + "\n" + character + "\n");
     }
 
 }

@@ -29,7 +29,7 @@ public class Monk extends Mage {
     }
 
     public String toString() {
-        return "Monk: " + name + "\nHealth: " + health + "\nDamage: " + damage + "\nSpeed: " + speed;
+        return "Monk: " + name + "\nHealth: " + health + "\nDamage: " + damage + "\nSpeed: " + speed + "\nMagic: " + magic;
     }
 
     @Override

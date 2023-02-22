@@ -25,7 +25,7 @@ public class Robber extends Warrior {
     }
     
     public String toString() {
-        return "Robber: " + name + "\nHealth: " + health + "\nSpeed: " + speed + "\nDamage: " + damage;
+        return "Robber: " + name + "\nHealth: " + health + "\nDamage: " + damage+ "\nSpeed: " + speed;
     }
 
     @Override

@@ -20,15 +20,18 @@ public class Peasant extends Unit_Character {
         this.speed += 8;
     }
 
-    public void supplier() {  // Поставляет арсенал стрелкам.
-        
-    }
+    public void supplier(Shooter shooter) {  // Поставляет арсенал стрелкам.
+            if (shooter.cartridgeCount == 5) {
+                return;
+            }
+            shooter.arsenal();
+        }
 
     public void heal(Unit_Character target) {  // Оказывает первую помощь (востанавливает в половину меньше здоровья чем колдун и монах).
         target.health += (this.magic / 2);
     }
 
     public String toString() {
-    return "Peasant: " + name + "\nHealth: " + health + "\nSpeed: " + speed + "\nDamage: " + damage;
+    return "Peasant: " + name + "\nHealth: " + health + "\nDamage: " + damage + "\nSpeed: " + speed;
 }
 }

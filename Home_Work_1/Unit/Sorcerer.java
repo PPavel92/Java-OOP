@@ -31,7 +31,7 @@ public class Sorcerer extends Mage {
     }
 
     public String toString() {
-        return "Sorcerer: " + name + "\nHealth: " + health + "\nSpeed: " + magic;
+        return "Sorcerer: " + name + "\nHealth: " + health + "\nDamage: " + damage + "\nSpeed: " + speed + "\nMagic: " + magic;
     }
 
     @Override
