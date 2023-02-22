@@ -12,14 +12,6 @@ public class Robber extends Warrior {
         super.name = name;
     }
 
-    public void attack(Unit_Character target) {  //  Сильная атака. 
-        target.health -= (this.damage * 2);
-    }
-
-    public void evasions() {  //  Может уклониться от атаки.
-        
-    }
-
     public void move() {
         this.speed += 10;
     }

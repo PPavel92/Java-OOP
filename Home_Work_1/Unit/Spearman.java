@@ -13,26 +13,6 @@ public class Spearman extends Warrior {
         super.name = name;
     }
     
-    double precision;
-
-    public void attack(Unit_Character enemy) { // Наносит большой урон.
-        attack = (int) (this.damage * this.precision);
-        System.out.println(this.getName() + " наносит " + enemy.getName() + " удар копьем " + damage + " урона!");
-        enemy.defend(attack);
-    }
-
-    public void attackPrecision(double precision) { // Наносит более точный удар.
-        
-        if (Math.random() == 3) {
-            precision = 1.2;   
-        }
-    }
-    
-
-    public void evasions() { // Может уклониться от атаки.
-
-    }
-
     public void move() {
         this.speed += 10;
     }
