@@ -1,68 +1,82 @@
 package Home_Work_1;
 
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import Home_Work_1.Interface.Names;
-import Unit.Crossbowman;
-import Unit.Mage;
-import Unit.Monk;
-import Unit.Peasant;
-import Unit.Robber;
-import Unit.Sniper;
-import Unit.Sorcerer;
-import Unit.Spearman;
-import Unit.Unit_Character;
-import Unit.Warrior;
+import Home_Work_1.Unit.Crossbowman;
+import Home_Work_1.Unit.Monk;
+import Home_Work_1.Unit.Peasant;
+import Home_Work_1.Unit.Robber;
+import Home_Work_1.Unit.Sniper;
+import Home_Work_1.Unit.Sorcerer;
+import Home_Work_1.Unit.Spearman;
+import Home_Work_1.Unit.Unit_Character;
+
 
 public class Lesson_OOP_1 {
     public static void main(String[] args) {
 
-        ArrayList<Unit_Character> characters = new ArrayList<>();
-        
+        Random random = new Random();
+    List<Unit_Character> alliance = new ArrayList<>();
+    List<Unit_Character> Soviet = new ArrayList<>();
 
-        Random rand = new Random();
-        for (int i = 0; i < 50; i++) {
-            int type = rand.nextInt(7);
-            String name = getName();
- 
-            switch (type) {
-                case 0:
-                    characters.add(new Peasant(name));
-                    break;
-                case 1:
-                    characters.add(new Robber(name));
-                    break;
-                case 2:
-                    characters.add(new Sniper(name));
-                    break;
-                case 3:
-                    characters.add(new Sorcerer(name));
-                    break;
-                case 4:
-                    characters.add(new Spearman(name));
-                    break;
-                case 5:
-                    characters.add(new Crossbowman(name));
-                    break;
-                case 6:
-                    characters.add(new Monk(name));
-                    break;
-                   
-            }
+    for (int i = 0; i < 5; i++) {
+        int type = random.nextInt(4); 
+        String name = getName();
+        switch (type) {
+            case 0:
+                alliance.add(new Peasant(name));
+                break;
+            case 1:
+                alliance.add(new Robber(name));
+                break;
+            case 2:
+                alliance.add(new Sniper(name));
+                break;
+            case 3:
+                alliance.add(new Sorcerer(name));
+                break;
         }
-
-            for (Unit_Character character : characters) {
-            System.out.println(character.getInfo() + "\n" + character + "\n");
-            
-        }
-    
+        System.out.println(alliance);
     }
+
     
-        private static String getName(){
-            String name= String.valueOf(Names.values()[new Random().nextInt(Names.values().length-1)]);
-            return name;
+    for (int i = 0; i < 5; i++) {
+        int type = random.nextInt(4); 
+        String name = getName();
+        switch (type) {
+            case 0:
+                Soviet.add(new Peasant(name));
+                break;
+            case 1:
+                Soviet.add(new Spearman(name));
+                break;
+            case 2:
+                Soviet.add(new Crossbowman(name));
+                break;
+            case 3:
+                Soviet.add(new Monk(name));
+                break;
         }
-        
+    }
+System.out.println("________________________");
+    List<Unit_Character> allCharacters = new ArrayList<>(alliance);
+    allCharacters.addAll(Soviet);
+    Collections.sort(allCharacters);
+
+    for (Unit_Character character : allCharacters) {
+        System.out.println(character);
+    }
+
 }
 
+    private static String getName() {
+        String name = String.valueOf(Names.values()[new Random().nextInt(Names.values().length - 1)]);
+        return name;
+    }
+
+}

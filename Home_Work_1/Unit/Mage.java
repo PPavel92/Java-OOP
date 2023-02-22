@@ -1,4 +1,4 @@
-package Unit;
+package Home_Work_1.Unit;
 
 public abstract class Mage extends Unit_Character{
 
@@ -6,8 +6,8 @@ public abstract class Mage extends Unit_Character{
     float dist;
     String name;
 
-    public Mage(int health, int damage, int magic, int speed, int shots, int maxShots, float dist) {
-        super(health, damage, speed);
+    public Mage(int health, int damage, int defense, int magic, int speed, int shots, int maxShots, float dist) {
+        super(health, damage, defense, speed);
         this.dist = dist;
         this.shots = shots;
         this.maxShots = maxShots;

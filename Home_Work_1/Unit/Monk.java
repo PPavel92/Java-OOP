@@ -1,14 +1,14 @@
-package Unit;
+package Home_Work_1.Unit;
 
 // # Монах
 public class Monk extends Mage {
-    public Monk(int health, int damage, int magic, int speed, int shots, int maxShots, float dist) {
-        super(health, damage, magic, speed, shots, maxShots, dist);
+    public Monk(int health, int damage, int defense, int magic, int speed, int shots, int maxShots, float dist) {
+        super(health, damage, defense, magic, speed, shots, maxShots, dist);
         super.name = name;
     }
 
     public Monk(String name){
-        super(100, 8, 7, 1, 10, 25, 4);
+        super(100, 8,5, 7, 1, 10, 25, 4);
         super.name = name;
     }
 

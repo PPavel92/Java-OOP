@@ -1,14 +1,14 @@
-package Unit;
+package Home_Work_1.Unit;
 
 // # Арбалетчик
 public class Crossbowman extends Shooter {
-    public Crossbowman(int health, int damage, int speed, int shots, int maxShots, float dist) {
-        super(health, damage, speed, shots, maxShots, dist);
+    public Crossbowman(int health, int damage, int defense, int speed, int shots, int maxShots, float dist) {
+        super(health, damage, defense, speed, shots, maxShots, dist);
         super.name = name;
     }
 
     public Crossbowman(String name){
-        super(100, 8,  1, 10, 30, 8);
+        super(100, 8,5,  1, 10, 30, 8);
         super.name = name;
     }
     

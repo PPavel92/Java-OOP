@@ -1,14 +1,14 @@
-package Unit;
+package Home_Work_1.Unit;
 
 // # Копейщик
 public class Spearman extends Warrior {
-    public Spearman(int health, int damage, int speed) {
-        super(health, damage, speed);
+    public Spearman(int health, int damage, int defense, int speed) {
+        super(health, damage, defense, speed);
         super.name = name;
     }
 
     public Spearman(String name){
-        super(100, 8, 5);
+        super(100, 8,5, 5);
         super.name = name;
     }
 

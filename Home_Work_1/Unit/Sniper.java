@@ -1,14 +1,16 @@
-package Unit;
+package Home_Work_1.Unit;
+
+
 
 // # Снайпер
 public class Sniper extends Shooter {
-    public Sniper(int health, int damage, int speed, int shots, int maxShots, float dist) {
-        super(health, damage, speed, shots, maxShots, dist);
+    public Sniper(int health, int damage, int defense, int speed, int shots, int maxShots, float dist) {
+        super(health, damage, defense, speed, shots, maxShots, dist);
         super.name = name;
     }
 
     public Sniper(String name){
-        super(100, 13,  1, 10, 235, 10);
+        super(100, 13, 5, 1, 10, 23, 10);
         super.name = name;
     }
 

@@ -1,15 +1,15 @@
-package Unit;
+package Home_Work_1.Unit;
 
 // # Крестьянин.
 public class Peasant extends Unit_Character {
 
-    public Peasant(int health, int damage, int speed) {
-        super( health, damage, speed);
+    public Peasant(int health, int damage, int defense, int speed) {
+        super( health, damage, defense, speed);
         super.name = name;
     }
 
     public Peasant(String name){
-        super(100, 8, 5);
+        super(100, 8,5, 5);
         super.name = name;
     }
     public void attack(Unit_Character target) {    // Рукопашный бой
@@ -29,6 +29,6 @@ public class Peasant extends Unit_Character {
     }
 
     public String toString() {
-    return "Peasant: " + name + "\nHealth: " + health + "\nSpeed: " + magic + "\nDamage: " + damage;
+    return "Peasant: " + name + "\nHealth: " + health + "\nSpeed: " + speed + "\nDamage: " + damage;
 }
 }
