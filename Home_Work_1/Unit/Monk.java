@@ -2,13 +2,13 @@ package Home_Work_1.Unit;
 
 // # Монах
 public class Monk extends Mage {
-    public Monk(int health, int damage, int defense, int magic, int speed, int shots, int maxShots, float dist) {
-        super(health, damage, defense, magic, speed, shots, maxShots, dist);
+    public Monk(int health, int damage, int defense, int magic, int speed, int shots, int maxShots, float dist, int posX, int posY) {
+        super(health, damage, defense, magic, speed, shots, maxShots, dist, posX, posY);
         super.name = name;
     }
 
     public Monk(String name){
-        super(100, 8,5, 7, 1, 10, 25, 4);
+        super(100, 8,5, 7, 1, 10, 25, 4,0,0);
         super.name = name;
     }
 
@@ -35,5 +35,9 @@ public class Monk extends Mage {
     @Override
     public String getInfo() {
         return "Я Монах!";
+    }
+
+    @Override
+    public void step() {
     }
 }

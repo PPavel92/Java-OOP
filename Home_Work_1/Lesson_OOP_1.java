@@ -22,7 +22,7 @@ public class Lesson_OOP_1 {
 
         Random random = new Random();
     List<Unit_Character> alliance = new ArrayList<>();
-    List<Unit_Character> Soviet = new ArrayList<>();
+    List<Unit_Character> soviet = new ArrayList<>();
 
     for (int i = 0; i < 10; i++) {
         int type = random.nextInt(4); 
@@ -50,22 +50,22 @@ public class Lesson_OOP_1 {
         String name = getName();
         switch (type) {
             case 0:
-                Soviet.add(new Peasant(name));
+                soviet.add(new Peasant(name));
                 break;
             case 1:
-                Soviet.add(new Spearman(name));
+                soviet.add(new Spearman(name));
                 break;
             case 2:
-                Soviet.add(new Crossbowman(name));
+                soviet.add(new Crossbowman(name));
                 break;
             case 3:
-                Soviet.add(new Monk(name));
+                soviet.add(new Monk(name));
                 break;
         }
     }
 
     List<Unit_Character> allCharacters = new ArrayList<>(alliance);
-    allCharacters.addAll(Soviet);
+    allCharacters.addAll(soviet);
     Collections.sort(allCharacters);
 
     for (Unit_Character character : allCharacters) {
@@ -78,6 +78,7 @@ public class Lesson_OOP_1 {
         String name = String.valueOf(Names.values()[new Random().nextInt(Names.values().length - 1)]);
         return name;
     }
+    
 
 } 
 

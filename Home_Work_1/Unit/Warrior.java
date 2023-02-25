@@ -1,16 +1,21 @@
 package Home_Work_1.Unit;
 
+import java.util.ArrayList;
+
 public abstract class Warrior extends Unit_Character{
 
     String name;
     int attack;
     double precision;
 
-    public Warrior(int health, int damage, int defense, int speed) {
-        super(health, damage, defense, speed);
+    public Warrior(int health, int damage, int defense, int speed, int posX, int posY) {
+        super(health, damage, defense, speed, posX, posY);
     }
 
-    
+    @Override
+    public void step(ArrayList<Unit_Character> alliance, ArrayList<Unit_Character> soviet) {
+        int index = super.findNearest(soviet); 
+    }
 
     public void attack(Unit_Character enemy) { // Наносит большой урон.
         attack = (int) (this.damage * this.precision);

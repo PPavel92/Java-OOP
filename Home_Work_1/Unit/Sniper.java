@@ -4,24 +4,16 @@ package Home_Work_1.Unit;
 
 // # Снайпер
 public class Sniper extends Shooter {
-    public Sniper(int health, int damage, int defense, int speed, int distance) {
-        super(health, damage, defense, speed, distance);
+    public Sniper(int health, int damage, int defense, int speed, int distance, int posX, int posY) {
+        super(health, damage, defense, speed, distance, posX, posY);
         super.name = name;
-    }
 
+    }
+    Vector2D coords = new Vector2D(1,1);
+    
     public Sniper(String name){
-        super(100, 13, 5, 1, 10);
+        super(100, 13, 5, 1, 10,0,0);
         super.name = name;
-    }
-    
-    
-          
-    public void move() { // Двигается медленно, чтобы сохранять точность.
-        this.speed -= 10;
-    }
-
-    public void extraShot() {  // Может помечать цель для дополнительного урона. "Реализовать через бул"
-        
     }
     
     public String toString() {
@@ -32,4 +24,14 @@ public class Sniper extends Shooter {
     public String getInfo() {
         return "Я Снайпер!";
     }
+
+
+
+    @Override
+    public void step() {
+    }
+
+
+
+   
 }

@@ -1,5 +1,8 @@
 package Home_Work_1.Unit;
-public abstract class Shooter extends Unit_Character{
+
+import java.util.ArrayList;
+
+public abstract class Shooter extends Unit_Character {
 
     protected int cartridgeCount;
 
@@ -7,42 +10,68 @@ public abstract class Shooter extends Unit_Character{
     int distance;
     String name;
 
-    public Shooter(int health, int damage, int defense, int speed, int distance) {
-        super(health, damage, defense, speed);
+    public Shooter(int health, int damage, int defense, int speed, int distance, int posX, int posY) {
+        super(health, damage, defense, speed, posX, posY);
         this.distance = distance;
-        this.cartridgeCount= 5;
+        this.cartridgeCount = 5;
 
-}
+    }
 
-    public float getDist(){
+    public float getDist() {
         return distance;
     }
 
-    public void attack(Unit_Character enemy) {  // Сильная атака.
+    @Override
+    public void step(ArrayList<Unit_Character> alliance, ArrayList<Unit_Character> soviet) {
+         
+
+        if (this.health <= 0 || this.cartridgeCount == 0) {
+            return;
+        }
+        else{
+        int index = super.findNearest(soviet);
+        Unit_Character enemy = soviet.get(index);
+        int damage = this.damage;
+        enemy.defend(damage);
+        }
+        int peasantIndex = super.findNearest(alliance);
+        if (peasantIndex != -1) {
+        Peasant peasant = (Peasant) alliance.get(peasantIndex);
+        peasant.supplier(this);
+        }
+        else {
+            this.cartridgeCount--;
+            }
+        }
+    
+
+    public void attack(Unit_Character enemy) { // Сильная атака.
         attack = (int) (this.damage);
         System.out.println(this.getName() + " наносит " + enemy.getName() + damage + " урона!");
         enemy.defend(attack);
     }
-    
+
     public void distanceAttack(Unit_Character enemy, int distance) {
         if (this.cartridgeCount == 0) {
             System.out.println(this.getName() + " Закончились потроны, нужно пополнить запас!");
             return;
         }
-
         if (distance <= 5) { // короткая дистанция
             attack = (int) (this.damage * 1.5);
-            System.out.println(this.getName() + " выстрелил в " + enemy.getName() + " на короткой дистанции " + damage + " урона!");
+            System.out.println(this.getName() + " выстрелил в " + enemy.getName() + " на короткой дистанции " + damage
+                    + " урона!");
         } else if (distance <= 10) { // средняя дистанция
             attack = (int) (this.damage * 1.0);
-            System.out.println(this.getName() + " выстрелил в " + enemy.getName() + " на средней дистанции " + damage + " урона!");
+            System.out.println(
+                    this.getName() + " выстрелил в " + enemy.getName() + " на средней дистанции " + damage + " урона!");
         } else { // дальняя дистанция
-            if (Math.random() < 0.5) { // 50% шанс промахнуться на дальней дистанции  
+            if (Math.random() < 0.5) { // 50% шанс промахнуться на дальней дистанции
                 attack = 0;
                 System.out.println(this.getName() + " Выстрелил мимо! ");
             } else {
                 attack = (int) (this.damage * 0.5);
-                System.out.println(this.getName() + "выстрелил в " + enemy.getName() + " на короткой дистанции " + damage + " урона!");
+                System.out.println(this.getName() + "выстрелил в " + enemy.getName() + " на короткой дистанции "
+                        + damage + " урона!");
             }
         }
         enemy.defend(attack);
@@ -50,6 +79,6 @@ public abstract class Shooter extends Unit_Character{
     }
 
     public void arsenal() {
-        this.cartridgeCount++; 
+        this.cartridgeCount++;
     }
 }
