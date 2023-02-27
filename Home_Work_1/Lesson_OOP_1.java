@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import Home_Work_1.Interface.Names;
 import Home_Work_1.Unit.Crossbowman;
@@ -19,10 +20,11 @@ import Home_Work_1.Unit.Unit_Character;
 
 public class Lesson_OOP_1 {
     public static void main(String[] args) {
-
+        
+    try (Scanner user_input = new Scanner(System.in)) {
         Random random = new Random();
-    List<Unit_Character> alliance = new ArrayList<>();
-    List<Unit_Character> soviet = new ArrayList<>();
+        ArrayList<Unit_Character> alliance = new ArrayList<>();
+        ArrayList<Unit_Character> soviet = new ArrayList<>();
 
     for (int i = 0; i < 10; i++) {
         int type = random.nextInt(4); 
@@ -64,14 +66,20 @@ public class Lesson_OOP_1 {
         }
     }
 
-    List<Unit_Character> allCharacters = new ArrayList<>(alliance);
+    ArrayList<Unit_Character> allCharacters = new ArrayList<>(alliance);
     allCharacters.addAll(soviet);
     Collections.sort(allCharacters);
 
     for (Unit_Character character : allCharacters) {
         System.out.println(character.getInfo() + "\n" + character + "\n");
+        if (alliance.contains(character)) character.step(alliance, soviet);
+        else character.step(soviet, alliance);
     }
 
+    while (true){
+        user_input.nextLine();
+    }
+    } 
 }
 
     private static String getName() {
@@ -79,7 +87,6 @@ public class Lesson_OOP_1 {
         return name;
     }
     
-
 } 
 
 

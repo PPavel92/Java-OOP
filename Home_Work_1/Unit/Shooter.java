@@ -34,14 +34,13 @@ public abstract class Shooter extends Unit_Character {
         int damage = this.damage;
         enemy.defend(damage);
         }
-        int peasantIndex = super.findNearest(alliance);
-        if (peasantIndex != -1) {
-        Peasant peasant = (Peasant) alliance.get(peasantIndex);
-        peasant.supplier(this);
-        }
-        else {
-            this.cartridgeCount--;
+        for (int i = 0; i < alliance.size(); i++) {
+            if (alliance.get(i).getInfo().toString().split(":")[0].equals("Peasant") && alliance.get(i).state.equals("Stand")) {
+                alliance.get(i).state = "Busy";
+                return;
             }
+        }
+        cartridgeCount--;
         }
     
 

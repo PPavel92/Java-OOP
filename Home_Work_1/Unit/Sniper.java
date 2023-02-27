@@ -17,7 +17,7 @@ public class Sniper extends Shooter {
     }
     
     public String toString() {
-        return "Sniper: " + name + "\nHealth: " + health + "\nDamage: " + damage+ "\nSpeed: " + speed;
+        return "Sniper: " + name + "\nHealth: " + health + "\nDamage: " + damage+ "\nSpeed: " + speed + "\nCoordinates: " + coords;
     }
 
     @Override

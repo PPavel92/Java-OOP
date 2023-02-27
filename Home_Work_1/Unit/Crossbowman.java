@@ -8,7 +8,6 @@ public class Crossbowman extends Shooter {
         super.name = name;
     }
 
-    Vector2D coords = new Vector2D(1,1);
 
     public Crossbowman(String name){
         super(100, 8,5,  1, 8,0,0);
