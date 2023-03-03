@@ -3,31 +3,13 @@ package Home_Work_1.Unit;
 // # Арбалетчик
 public class Crossbowman extends Shooter {
    
-    public Crossbowman(int health, int damage, int defense, int speed, int distance, int posX, int posY) {
-        super(health, damage, defense, speed, distance, posX, posY);
-        super.name = name;
-    }
-
-
-    public Crossbowman(String name){
-        super(100, 8,5,  1, 8,0,0);
-        super.name = name;
-    }
-   
-    public void move() {  // Средняя скрость передвижения
-        this.speed -= 5;
-    }
-
-       public String toString() {
-        return "Crossbowman: " + name + "\nHealth: " + health + "\nSpeed: " + speed + "\nDamage: " + damage;
+    public Crossbowman(String name, Vector2D coords) {
+        super(name, 60, 127, 4, 9,20, 10, coords.posX, coords.posY);
     }
 
     @Override
-    public String getInfo() {
-        return "Я Арбалетчик!";
-    }
-
-    @Override
-    public void step() {
+    public StringBuilder getInfo() {
+        StringBuilder builder = new StringBuilder();
+        return builder.append("Арбалетчик: ").append(getName());
     }
 }

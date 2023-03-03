@@ -1,13 +1,12 @@
 package Home_Work_1.Unit;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Random;
 
+import Home_Work_1.AnsiColors;
 import Home_Work_1.Interface.GameInterface;
 
-public abstract class Unit_Character implements GameInterface, Comparable<Unit_Character> {
+public abstract class Unit_Character implements GameInterface {
 
     protected String name;
     protected int health;
@@ -15,23 +14,38 @@ public abstract class Unit_Character implements GameInterface, Comparable<Unit_C
     protected int damage;
     protected int defense;
     protected int speed;
-    protected int magic = new Random().nextInt(20) + 2;
+    protected int magic = new Random().nextInt(5) + 2;
     public String state;
-    public Vector2D coords;
+    protected Vector2D coords;
     private  Team team;
+    protected static int heroCnt;
+    
+
+    @Override
+    public String toString() {
+        return getInfo() +
+                " H:" + Math.round(health) +
+                " D:" + defense +
+                " A:" + damage +
+               " " + state;
+    }
+
+    public int[] getCoords() {return new int[]{coords.posX, coords.posY};}  
     
     public enum Team {
         alliance,
         soviet
     }
 
-    public Unit_Character(int health, int damage, int defense, int speed, int posX, int posY) {
+    public Unit_Character(String name, int health, int damage, int defense, int speed, int posX, int posY) {
+        this.name= name;
         this.health = health;
         this.damage = damage;
         this.defense = defense;
         this.speed = speed;
         coords = new Vector2D(posX, posY);
         state = "Stand";
+        heroCnt++;
        
     }
     public Team getTeam() {
@@ -50,31 +64,25 @@ public abstract class Unit_Character implements GameInterface, Comparable<Unit_C
     public int getSpeed() { 
         return this.speed; 
     }
-
+    
     public int getMaxHealth() {
         if (health >= 100)
             this.health = maxHealth;
         return maxHealth;
     }
-
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
-    }
-
+      
     protected void healed(int health) {
         this.health = health + this.health > this.maxHealth ? this.maxHealth : health + this.health;//????
     }
+    public boolean isDead() {return health <= 0; }
 
     protected void getDamage(int damage) {
         if (this.health - damage > 0) {
             this.health -= damage;
         } else {
             isDead();
+            state = "Die";
         }
-    }
-
-    public boolean isDead() {
-        return health <= 0;
     }
 
     public void defend(int damage) {
@@ -89,37 +97,15 @@ public abstract class Unit_Character implements GameInterface, Comparable<Unit_C
         System.out.println(getName() + " получил " + damageDealt + " урона!");
         if (isDead()) {
             state = "Die";
-            System.out.println(getName() + " Мертв");
+            System.out.println(AnsiColors.ANSI_RED + getName() + " Мертв"+ AnsiColors.ANSI_RESET);
         }
     }
 
-    protected String getName() {
-        return name;
-    }
+    protected String getName(){return name;}
 
-    @Override
-    public String getInfo() {
-        return "Я человек!";
-    }
-
-    public int compareTo(Unit_Character other) {
-        return other.speed - this.speed;
-    }
-
-    static void sortTeam (ArrayList<Unit_Character> team){
-        team.sort((Comparator< Unit_Character>) new Comparator<Unit_Character>() {
-
-            @Override
-            public int compare(Unit_Character alliance, Unit_Character soviet) {
-                if (soviet.getSpeed() == alliance.getSpeed()) return (int) (soviet.getHealth() - alliance.getHealth());
-                else  return (int) (soviet.getSpeed() - alliance.getSpeed());
-            }
-        });
-    }
-
-        public int findNearest(ArrayList<Unit_Character> allCharacters) {
-        double min = 100;
-        int index = 0;
+    public int findNearest(ArrayList<Unit_Character> allCharacters) {
+     double min = 100;
+     int index = 0;
         for (int i = 0; i < allCharacters.size(); i++) {
             if(min > coords.getDistance(allCharacters.get(i).coords) & !allCharacters.get(i).state.equals("Die")) {
                 index = i;
@@ -148,4 +134,10 @@ public abstract class Unit_Character implements GameInterface, Comparable<Unit_C
         }
         return opposingTeam;
     }
+
+    @Override
+    public StringBuilder getInfo() {
+        return new StringBuilder("");
+    }
+    
 }

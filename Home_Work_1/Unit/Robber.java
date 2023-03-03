@@ -2,30 +2,12 @@ package Home_Work_1.Unit;
 
 // # Разбойник
 public class Robber extends Warrior {
-    public Robber(int health, int damage,int defense, int speed, int posX, int posY) {
-        super( health, damage, defense, speed,  posX,  posY);
-        super.name = name;
+    public Robber(String name, Vector2D coords) {
+        super(name, 70, 10, 7, 6, coords.posX, coords.posY);
     }
-
-    public Robber(String name){
-        super(100, 10,5, 8,0,0);
-        super.name = name;
-    }
-
-    public void move() {
-        this.speed += 10;
-    }
-    
-    public String toString() {
-        return "Robber: " + name + "\nHealth: " + health + "\nDamage: " + damage+ "\nSpeed: " + speed;
-    }
-
     @Override
-    public String getInfo() {
-        return "Я Разбойник!";
-    }
-
-    @Override
-    public void step() {
+    public StringBuilder getInfo() {
+        StringBuilder builder = new StringBuilder();
+        return builder.append("Разбойник ").append(getName());
     }
 }

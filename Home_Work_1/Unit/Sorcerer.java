@@ -4,42 +4,31 @@ package Home_Work_1.Unit;
 
 // # Колдун
 public class Sorcerer extends Mage {
-    public Sorcerer(int health, int damage, int defense, int magic, int speed, int shots, int maxShots, float dist, int posX, int posY) {
-        super(health, damage, defense, magic, speed, shots, maxShots, dist, posX, posY);
-        super.name = name;
-    }
-
-    public Sorcerer(String name){
-        super(100, 8,5, 7, 3, 10, 25, 4,0,0);
-        super.name = name;
-    }
-
-    public void attack(Unit_Character target) {  // Наносит сильный  магический урон
-        target.health -= (3 * this.damage);
-    }
-         
-    public void move() { // Способность перемещяться в прострвнстве
-        this.speed -= 5;
-    }
-
-    public void heal(Unit_Character target) {   // Способность лечения(Союзников и самоизлечения).
-        target.health += this.magic;
-    }
-
-    public void mana() {   // Расход магии.
-        
-    }
-
-    public String toString() {
-        return "Sorcerer: " + name + "\nHealth: " + health + "\nDamage: " + damage + "\nSpeed: " + speed + "\nMagic: " + magic;
+    public Sorcerer(String name, Vector2D coords) {
+        super(name,50, 1, 3, 7, coords.posX, coords.posY);      
     }
 
     @Override
-    public String getInfo() {
-        return "Я Колдун";
-    }
-
-    @Override
-    public void step() {
+    public StringBuilder getInfo() {
+        StringBuilder builder = new StringBuilder();
+        return builder.append("Колдун ").append(getName());
     }
 }
+
+
+
+// public void attack(Unit_Character target) {  // Наносит сильный  магический урон
+//     target.health -= (3 * this.damage);
+// }
+     
+// public void move() { // Способность перемещяться в прострвнстве
+//     this.speed -= 5;
+// }
+
+// public void heal(Unit_Character target) {   // Способность лечения(Союзников и самоизлечения).
+//     target.health += this.magic;
+// }
+
+// public void mana() {   // Расход магии.
+    
+// }

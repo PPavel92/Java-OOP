@@ -10,8 +10,16 @@ public class Vector2D {
         this.posY = posY;
     }
 
-    public Double getDistance(Vector2D oponent){
+    protected double getDistance(Vector2D oponent){
         return Math.sqrt(Math.pow(posX - oponent.posX,2) + Math.pow(posY - oponent.posY,2));
 
+    }
+
+    protected boolean movementLeft(Vector2D oponent){
+        return (posX < oponent.posX)? false: true;
+    }
+
+    protected boolean movementUP(Vector2D oponent){
+        return (posY > oponent.posY)? false: true;
     }
 }

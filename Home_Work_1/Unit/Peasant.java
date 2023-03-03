@@ -5,16 +5,15 @@ import java.util.ArrayList;
 // # Крестьянин.
 public class Peasant extends Unit_Character {
 
-
-    public Peasant(int health, int damage, int defense, int speed, int posX, int posY) {
-        super(health, damage, defense, speed, posX,  posY);
-        super.name = name;
-        // this.cartridgeCount = cartridgeCount;
+    protected int cartridgeCount;
+    public Peasant(String name, int health, int damage, int defense, int speed, int cartridgeCount, int posX, int posY) {
+        super(name, health, damage, defense, speed, posX,  posY);
+        this.cartridgeCount = cartridgeCount;
     }
-
-    public Peasant(String name) {
-        super(100, 8, 5, 5,0,0);
-        super.name = name;
+   
+    public Peasant(String name, Vector2D coords) {
+        super(name, 50, 1, 1, 3, coords.posX, coords.posY);
+        this.cartridgeCount = 1;
     }
 
     public void supplier(Shooter shooter) { // Поставляет арсенал стрелкам.
@@ -24,40 +23,23 @@ public class Peasant extends Unit_Character {
         shooter.arsenal();
     }
 
-    public String toString() {
-        return "Peasant: " + name + "\nHealth: " + health + "\nDamage: " + damage + "\nSpeed: " + speed + "\nCoordinates: " + coords;
-    }
-
     @Override
-    public  void step(ArrayList<Unit_Character> alliance, ArrayList<Unit_Character> soviet) {
-        if (isDead()) {
-            return;
-        }
+    public  void step(ArrayList<Unit_Character> Mine, ArrayList<Unit_Character> Enemy) {
+        if (health <= 0) {return;}
+
         state = "Stand";
-        ArrayList<Unit_Character> Mine;
-        ArrayList<Unit_Character> Enemy;
-        if(alliance.contains(this)) {Mine = soviet; Enemy = alliance;}
-        else{Mine = alliance; Enemy = soviet;}
         for (Unit_Character character : Mine) {
             if (character.getHealth() < character.getMaxHealth()) {
                 character.setHealth(character.getHealth() + 1);
-                System.out.println(name + " вылечил" + character.getName());
+                System.out.println("Крестьянен " + getName() + " вылечил " + character.getName()+ " +1 очко здоровья!");
                 break; 
             }
         }
     }
 
     @Override
-    public void step() {
-
+    public StringBuilder getInfo() {
+        StringBuilder builder = new StringBuilder();
+        return builder.append("Крестьянин ").append(getName());
     }
-
 }
-// public void attack(Unit_Character target) { // Рукопашный бой
-    //     target.health -= (this.damage / 2);
-    // }
-
-// public void heal(Unit_Character target) { // Оказывает первую помощь (востанавливает в половину меньше здоровья чем колдун и монах).
-                                               
-    //     target.health += (this.magic / 2);
-    // }

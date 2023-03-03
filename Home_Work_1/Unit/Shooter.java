@@ -8,12 +8,11 @@ public abstract class Shooter extends Unit_Character {
 
     int attack;
     int distance;
-    String name;
-
-    public Shooter(int health, int damage, int defense, int speed, int distance, int posX, int posY) {
-        super(health, damage, defense, speed, posX, posY);
+    
+    protected Shooter(String name,  int health, int damage, int defense, int speed,int cartridgeCount, int distance, int posX, int posY) {
+        super(name, health, damage, defense, speed, posX, posY);
         this.distance = distance;
-        this.cartridgeCount = 5;
+        this.cartridgeCount = cartridgeCount;
 
     }
 
@@ -31,26 +30,7 @@ public abstract class Shooter extends Unit_Character {
         else{
         int index = super.findNearest(soviet);
         Unit_Character enemy = soviet.get(index);
-        int damage = this.damage;
-        enemy.defend(damage);
-        }
-        for (int i = 0; i < alliance.size(); i++) {
-            if (alliance.get(i).getInfo().toString().split(":")[0].equals("Peasant") && alliance.get(i).state.equals("Stand")) {
-                alliance.get(i).state = "Busy";
-                return;
-            }
-        }
-        cartridgeCount--;
-        }
-    
 
-    public void attack(Unit_Character enemy) { // Сильная атака.
-        attack = (int) (this.damage);
-        System.out.println(this.getName() + " наносит " + enemy.getName() + damage + " урона!");
-        enemy.defend(attack);
-    }
-
-    public void distanceAttack(Unit_Character enemy, int distance) {
         if (this.cartridgeCount == 0) {
             System.out.println(this.getName() + " Закончились потроны, нужно пополнить запас!");
             return;
@@ -73,11 +53,40 @@ public abstract class Shooter extends Unit_Character {
                         + damage + " урона!");
             }
         }
-        enemy.defend(attack);
-        this.cartridgeCount--;
+
+        int damage = this.damage;
+        enemy.defend(damage);
+        // enemy.defend(attack);
+        }
+        ArrayList<Unit_Character> myTeam = new ArrayList<>();
+        for (Unit_Character character : Mine(alliance)) {
+                myTeam.add(character);}
+        for (int i = 0; i < Mine(myTeam).size(); i++) {
+            if (myTeam.get(i).getInfo().toString().split(":")[0].equals("Peasant") && myTeam.get(i).state.equals("Stand")) {
+                myTeam.get(i).state = "Busy";
+                return;
+            }
+        }
+        this.cartridgeCount--;   
     }
 
     public void arsenal() {
         this.cartridgeCount++;
     }
+        
+    @Override
+    public String toString() {
+        return getInfo() +
+                " H:" + Math.round(health) +
+                " D:" + defense +
+                " A:" + damage +
+                " Shots:" + cartridgeCount +
+                " " + state;
+    }
 }
+
+// public void attack(Unit_Character enemy) { // Сильная атака.
+    //     attack = (int) (this.damage);
+    //     System.out.println(this.getName() + " наносит " + enemy.getName() + damage + " урона!");
+    //     enemy.defend(attack);
+    // }
