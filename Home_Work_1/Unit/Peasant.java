@@ -16,12 +16,12 @@ public class Peasant extends Unit_Character {
         this.cartridgeCount = 1;
     }
 
-    public void supplier(Shooter shooter) { // Поставляет арсенал стрелкам.
-        if (shooter.cartridgeCount == 5) {
-            return;
-        }
-        shooter.arsenal();
-    }
+    // public void supplier(Shooter shooter) { // Поставляет арсенал стрелкам.
+    //     if (shooter.cartridgeCount == 5) {
+    //         return;
+    //     }
+    //     shooter.arsenal();
+    // }
 
     @Override
     public  void step(ArrayList<Unit_Character> Mine, ArrayList<Unit_Character> Enemy) {
@@ -29,7 +29,7 @@ public class Peasant extends Unit_Character {
 
         state = "Stand";
         for (Unit_Character character : Mine) {
-            if (character.getHealth() < character.getMaxHealth()) {
+            if (character.getHealth() < character.getMaxHealth()|| character.getHealth() >0) {
                 character.setHealth(character.getHealth() + 1);
                 System.out.println("Крестьянен " + getName() + " вылечил " + character.getName()+ " +1 очко здоровья!");
                 break; 

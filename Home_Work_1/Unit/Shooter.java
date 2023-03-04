@@ -53,26 +53,34 @@ public abstract class Shooter extends Unit_Character {
                         + damage + " урона!");
             }
         }
-
-        int damage = this.damage;
-        enemy.defend(damage);
-        // enemy.defend(attack);
+        enemy.defend(attack);
         }
+        if (cartridgeCount >= 5) {
+            this.cartridgeCount--; 
+            return;
+        }
+        else{
         ArrayList<Unit_Character> myTeam = new ArrayList<>();
-        for (Unit_Character character : Mine(alliance)) {
-                myTeam.add(character);}
-        for (int i = 0; i < Mine(myTeam).size(); i++) {
-            if (myTeam.get(i).getInfo().toString().split(":")[0].equals("Peasant") && myTeam.get(i).state.equals("Stand")) {
-                myTeam.get(i).state = "Busy";
-                return;
+            for (Unit_Character character : Mine(alliance)) {
+                myTeam.add(character);
+                int peasantIndex = super.findNearest(myTeam);
+                Unit_Character cartridge = myTeam.get(peasantIndex);
+                cartridge.getArrow();
+            return;
             }
+        
+           for (int i = 0; i < Mine(myTeam).size(); i++) {
+                if (myTeam.get(i).getInfo().toString().split(":")[0].equals("Peasant") && myTeam.get(i).state.equals("Stand")) {
+                    myTeam.get(i).state = "Busy";
+                 return;
+                }
+            }
+       
+        this.cartridgeCount--; 
         }
-        this.cartridgeCount--;   
     }
 
-    public void arsenal() {
-        this.cartridgeCount++;
-    }
+    // public void arsenal() {this.cartridgeCount++;}
         
     @Override
     public String toString() {
@@ -84,6 +92,7 @@ public abstract class Shooter extends Unit_Character {
                 " " + state;
     }
 }
+
 
 // public void attack(Unit_Character enemy) { // Сильная атака.
     //     attack = (int) (this.damage);

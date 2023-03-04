@@ -4,7 +4,7 @@ package Home_Work_1.Unit;
 public class Crossbowman extends Shooter {
    
     public Crossbowman(String name, Vector2D coords) {
-        super(name, 60, 127, 4, 9,20, 10, coords.posX, coords.posY);
+        super(name, 60, 12, 4, 9,20, 10, coords.posX, coords.posY);
     }
 
     @Override

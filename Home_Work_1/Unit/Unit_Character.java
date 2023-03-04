@@ -19,7 +19,7 @@ public abstract class Unit_Character implements GameInterface {
     protected Vector2D coords;
     private  Team team;
     protected static int heroCnt;
-    
+    public int cartridgeCount;
 
     @Override
     public String toString() {
@@ -48,6 +48,13 @@ public abstract class Unit_Character implements GameInterface {
         heroCnt++;
        
     }
+
+    public void getArrow(){
+        if(cartridgeCount < 5)
+            cartridgeCount++;
+            return;
+    }
+
     public Team getTeam() {
         return team;
     }
